@@ -1,0 +1,22 @@
+services:
+  telegram-nas:
+    build: .
+    container_name: telegram-nas-downloader
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/data
+      # Change the left side to your NAS video folder.
+      - /volume1/video/telegram:/downloads
+    command: ["telegram-nas", "-c", "/data/config.yaml", "run"]
+
+  xray:
+    image: ghcr.io/xtls/xray-core:latest
+    container_name: telegram-nas-xray
+    restart: unless-stopped
+    profiles:
+      - xray
+    volumes:
+      - ./data/xray-config.json:/etc/xray/config.json:ro
+    command: ["run", "-c", "/etc/xray/config.json"]
