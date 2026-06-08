@@ -1,0 +1,63 @@
+telegram:
+  api_id: ${TELEGRAM_API_ID}
+  api_hash: ${TELEGRAM_API_HASH}
+  session: ./data/telegram.session
+
+network:
+  # Optional. All Telegram connections and media downloads will go through this proxy.
+  # Supported schemes: socks5, socks4, http
+  # Examples:
+  # proxy_url: "socks5://127.0.0.1:10808"
+  # proxy_url: "http://192.168.1.10:7890"
+  proxy_url: ""
+  proxy_rdns: true
+
+download:
+  # Windows mapped drive example: Z:/telegram-videos
+  # Linux/SMB mount example: /mnt/nas/telegram-videos
+  destination: ./downloads
+
+  # Use public @usernames or numeric IDs printed by:
+  # telegram-nas -c config.yaml list-chats
+  chats:
+    - "@example_channel"
+
+  # Recent messages scanned when `run` starts, and default for `backfill`.
+  history_limit: 200
+  scan_on_start: true
+
+  # Parallel downloads. Keep small to be polite to Telegram and your NAS.
+  workers: 2
+
+  tmp_dir: ./data/tmp
+  overwrite: false
+  dedupe_by_media: true
+
+  # 0 means no limit.
+  min_bytes: 0
+  max_bytes: 0
+
+  # Available variables:
+  # chat_id, chat_title, message_id, date, filename, ext
+  layout: "{chat_title}/{date:%Y-%m}/{message_id}_{filename}"
+
+  video_extensions:
+    - .3g2
+    - .3gp
+    - .avi
+    - .flv
+    - .m4v
+    - .mkv
+    - .mov
+    - .mp4
+    - .mpeg
+    - .mpg
+    - .ts
+    - .webm
+    - .wmv
+
+state:
+  db: ./data/state.sqlite3
+
+logging:
+  level: INFO
