@@ -17,5 +17,9 @@ dependencies = [
 [project.scripts]
 telegram-nas = "tg_nas_downloader.cli:main"
 
+[project.urls]
+Homepage = "https://github.com/Gavin-LHX/telegram-nas-downloader"
+Repository = "https://github.com/Gavin-LHX/telegram-nas-downloader"
+
 [tool.setuptools.packages.find]
 where = ["src"]
