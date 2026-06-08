@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.py[cod]
+
+.env
+data/
+downloads/
+outputs/
+work/
+docs/
+
+*.session
+*.session-journal
+*.sqlite3
+*.sqlite3-*
+*.zip
