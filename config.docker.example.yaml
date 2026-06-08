@@ -1,0 +1,34 @@
+telegram:
+  api_id: ${TELEGRAM_API_ID}
+  api_hash: ${TELEGRAM_API_HASH}
+  session: /data/telegram.session
+
+network:
+  # Existing LAN proxy example:
+  # proxy_url: "http://192.168.1.10:7890"
+  #
+  # Built-in Xray sidecar example. Use this after generating /data/xray-config.json
+  # and starting docker compose with `--profile xray`:
+  # proxy_url: "socks5://xray:10808"
+  proxy_url: ""
+  proxy_rdns: true
+
+download:
+  destination: /downloads
+  chats:
+    - "@example_channel"
+  history_limit: 200
+  scan_on_start: true
+  workers: 2
+  tmp_dir: /downloads/.tmp
+  overwrite: false
+  dedupe_by_media: true
+  min_bytes: 0
+  max_bytes: 0
+  layout: "{chat_title}/{date:%Y-%m}/{message_id}_{filename}"
+
+state:
+  db: /data/state.sqlite3
+
+logging:
+  level: INFO
